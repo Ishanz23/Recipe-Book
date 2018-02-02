@@ -1,0 +1,19 @@
+<div class="row">
+  <div class="col-xs-12">    
+      <div class="list-group" *ngFor = "let recipe of recipes">
+        <a href="" class="list-group-item d-flex flex-row justify-content-between align-items-center">
+          <div class="d-flex flex-column">
+              <h6 class="list-group-item-heading">{{ recipe.getName() }}</h6>
+              <small class="list-group-item-text text-muted">{{ recipe.getDescription() }}</small>
+          </div>          
+          <span>
+            <img [src]="recipe.getImagePath()" 
+                 alt="{{ recipe.getName() }}" 
+                 class="img-responsive" 
+                 style="max-height: 40px;">
+          </span>
+        </a>
+      </div>
+    <app-recipe-item></app-recipe-item>
+  </div>
+</div>
