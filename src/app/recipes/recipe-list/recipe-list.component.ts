@@ -8,11 +8,11 @@ import { Recipe } from '../recipe.model';
 })
 export class RecipeListComponent implements OnInit {
 
-  recipes: Recipe[] = [new Recipe('Dal',
-  'A neccessity with Rice',
+  recipes: Recipe[] = [new Recipe('Dal Fry',
+  'The tasty companion for your Chapatis!',
   'https://upload.wikimedia.org/wikipedia/commons/3/39/Daal_after_Tadka_Pulse_Soup_India.jpg'),
-  new Recipe('Dal',
-  'A neccessity with Rice',
+  new Recipe('Palak Paneer',
+  'The Magic of spincah with Paneer!',
   'https://upload.wikimedia.org/wikipedia/commons/3/39/Daal_after_Tadka_Pulse_Soup_India.jpg')];
 
   constructor() { }

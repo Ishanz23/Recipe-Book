@@ -1,3 +1,33 @@
-<p>
-  shopping-edit works!
-</p>
+<div class="row">
+  <div class="col-xs-12">
+    <div class="card">
+      <div class="card-header h5">
+        Edit Shopping List
+      </div>
+      <div class="card-body">
+        <form>
+          <div class="row">
+            <div class="col-sm-5 form-group">
+              <label for="name">Name</label>
+              <input type="text" id="name" name="name" class="form-control" [(ngModel)] = "ingredientName">
+            </div>
+            <div class="col-sm-3 form-group">
+              <label for="amount">Amount</label>
+              <input type="number" id="amount" name="amount" class="form-control" [(ngModel)] = "ingredientAmount">
+            </div>        
+          </div>
+          <button class="btn btn-sm btn-success"
+                  type="submit" 
+                  (click) = "onAddIngredient()">
+            Add
+          </button>
+          <button class="btn btn-sm btn-danger" 
+                  type="button" 
+                  (click) = "onDeleteIngredient()">Delete</button>
+          <button class="btn btn-sm btn-primary" type="button" 
+                  (click) = "onClear()">Clear</button>
+        </form>
+      </div>
+    </div>    
+  </div>
+</div>

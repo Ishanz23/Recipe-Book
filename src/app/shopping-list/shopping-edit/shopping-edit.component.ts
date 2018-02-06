@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Ingredient } from '../../shared/ingredient.model';
 
 @Component({
   selector: 'app-shopping-edit',
@@ -6,10 +7,34 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./shopping-edit.component.css']
 })
 export class ShoppingEditComponent implements OnInit {
+  ingredientName: string;
+  ingredientAmount: number;
 
+  @Output() ingredientAdded = new EventEmitter<Ingredient>();
+  @Output() ingredientDeleted = new EventEmitter<Ingredient>();
   constructor() { }
 
   ngOnInit() {
   }
 
+  onAddIngredient() {
+    (this.ingredientName === undefined || this.ingredientAmount === undefined) ?
+      console.log('Ingredient Name/amount missing!') :
+      this.ingredientAdded.emit(new Ingredient( this.ingredientName, this.ingredientAmount));
+      this.ingredientName = undefined;
+      this.ingredientAmount = undefined;
+  }
+
+  onDeleteIngredient() {
+    (this.ingredientName === undefined || this.ingredientAmount === undefined) ?
+      console.log('Ingredient Name/amount missing!') :
+      this.ingredientDeleted.emit(new Ingredient( this.ingredientName, this.ingredientAmount));
+    this.ingredientName = undefined;
+    this.ingredientAmount = undefined;
+  }
+
+  onClear() {
+    this.ingredientName = undefined;
+    this.ingredientAmount = undefined;
+  }
 }

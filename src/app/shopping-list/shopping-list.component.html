@@ -1,7 +1,19 @@
+
+<app-shopping-edit 
+  (ingredientAdded) = "onIngredientAdded($event)" 
+  (ingredientDeleted) = "onIngredientDeleted($event)"></app-shopping-edit>
+<br>
 <div class="row">
   <div class="col-xs-10">
-    <app-shopping-edit></app-shopping-edit>
-    <hr>
-    <p>The List</p>
+    <div class="card">
+      <div class="card-header h5">
+        Cart
+      </div>
+      <ul class="list-group">
+        <a class="list-group-item" *ngFor = "let ingredient of ingredients">
+          {{ ingredient.name }}({{ ingredient.amount }})
+        </a>
+      </ul>
+    </div>            
   </div>
 </div>
