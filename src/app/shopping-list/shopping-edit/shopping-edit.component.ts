@@ -32,9 +32,4 @@ export class ShoppingEditComponent implements OnInit {
     this.ingredientName = undefined;
     this.ingredientAmount = undefined;
   }
-
-  onClear() {
-    this.ingredientName = undefined;
-    this.ingredientAmount = undefined;
-  }
 }

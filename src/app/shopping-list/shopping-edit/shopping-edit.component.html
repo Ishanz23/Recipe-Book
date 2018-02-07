@@ -6,26 +6,32 @@
       </div>
       <div class="card-body">
         <form>
-          <div class="row">
-            <div class="col-sm-5 form-group">
-              <label for="name">Name</label>
-              <input type="text" id="name" name="name" class="form-control" [(ngModel)] = "ingredientName">
-            </div>
-            <div class="col-sm-3 form-group">
-              <label for="amount">Amount</label>
-              <input type="number" id="amount" name="amount" class="form-control" [(ngModel)] = "ingredientAmount">
-            </div>        
+          <mat-form-field>
+              <input matInput placeholder="Name"  name="name" [(ngModel)] = "ingredientName">
+              <button mat-button *ngIf="ingredientName" matSuffix mat-icon-button aria-label="Clear" (click)="ingredientName=''">
+                  <mat-icon>close</mat-icon>
+              </button>
+          </mat-form-field>
+          <br>
+          <mat-form-field>
+              <input matInput type="number" placeholder="Amount" name="amount" [(ngModel)] = "ingredientAmount">
+              <button mat-button *ngIf="ingredientAmount" matSuffix mat-icon-button aria-label="Clear" (click)="ingredientAmount=undefined">
+                  <mat-icon>close</mat-icon>
+              </button>
+          </mat-form-field>
+          <div class="button-row">
+              <button mat-raised-button
+              color="primary"
+              type="submit" 
+              (click) = "onAddIngredient()">
+                Add
+              </button>
+              <button mat-raised-button 
+                color="warn"
+                type="button" 
+                (click) = "onDeleteIngredient()">Delete</button>
           </div>
-          <button class="btn btn-sm btn-success"
-                  type="submit" 
-                  (click) = "onAddIngredient()">
-            Add
-          </button>
-          <button class="btn btn-sm btn-danger" 
-                  type="button" 
-                  (click) = "onDeleteIngredient()">Delete</button>
-          <button class="btn btn-sm btn-primary" type="button" 
-                  (click) = "onClear()">Clear</button>
+          
         </form>
       </div>
     </div>    
