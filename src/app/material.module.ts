@@ -8,6 +8,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatListModule} from '@angular/material/list';
 import {MatCardModule} from '@angular/material/card';
 import {MatDividerModule} from '@angular/material/divider';
+import {MatSelectModule} from '@angular/material/select';
 
 @NgModule({
     imports: [
@@ -18,7 +19,8 @@ import {MatDividerModule} from '@angular/material/divider';
         MatToolbarModule,
         MatListModule,
         MatCardModule,
-        MatDividerModule
+        MatDividerModule,
+        MatSelectModule
     ],
     exports: [
         MatButtonModule,

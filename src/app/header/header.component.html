@@ -4,7 +4,7 @@
         <button mat-button (click)="onSelect('recipe')">Recipes</button>
         <button mat-button (click)="onSelect('shop')">Shop</button>
         <span class="example-spacer"></span>
-        <button mat-button>Manage</button>
+        <button mat-button [matMenuTriggerFor]="manage"><mat-icon>more_vert</mat-icon></button>
         <mat-menu #manage="matMenu">
         <button mat-menu-item>
             <mat-icon>file_download</mat-icon>

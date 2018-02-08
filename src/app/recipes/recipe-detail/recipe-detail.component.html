@@ -1,18 +1,17 @@
 <mat-card>
   <mat-card-header>
-    <div mat-card-avatar class="example-header-image"></div>
+    <div mat-card-avatar><mat-icon>restaurant_menu</mat-icon></div>
     <mat-card-title>{{ recipe.name }}</mat-card-title>
+    <mat-card-subtitle>{{ recipe.description }}</mat-card-subtitle>
   </mat-card-header>
   <img mat-card-image [src]="recipe.imagePath" [alt]="recipe.name">
   <mat-card-content>
-    <div class="btn-group">
-      <button mat-raised-button color="primary">Manage Recipe</button>
-      <div class="dropdown-menu">
-        <a href="#" class="dropdown-item">Shopping List</a>
-        <a href="#" class="dropdown-item">Edit</a>
-        <a href="#" class="dropdown-item">Delete</a>
-      </div>
-    </div>
+    <button mat-raised-button color="primary" [matMenuTriggerFor]="manageRecipe">Manage Recipe</button>
+    <mat-menu #manageRecipe="matMenu">
+      <button mat-menu-item>Cart</button>
+      <button mat-menu-item>Edit</button>
+      <button mat-menu-item>Delete</button>
+    </mat-menu>
   </mat-card-content>
 </mat-card>
 <!-- <div class="row">
