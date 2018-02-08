@@ -1,23 +1,19 @@
-<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fc;">
-    <a class="navbar-brand" href="#">Recipe Book</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item"><a href="#" class="nav-link">Recipes</a></li>
-            <li class="nav-item"><a href="#" class="nav-link">Shopping List</a></li>
-        </ul>
-        <ul class="navbar-nav navbar-right">
-            <li class="nav-item dropdown">
-                <a href="#" class="nav-link dropdown-toggle" id="navbarDropdown" role ="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Manage
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Fetch Data</a>
-                        <a class="dropdown-item" href="#">Save Data</a>
-                </div>
-            </li>
-        </ul>
-    </div>    
-</nav>
+<mat-toolbar color="primary" class="mat-elevation-z6">
+    <mat-toolbar-row>
+        <button mat-button ><h3>Recipe Book</h3></button>
+        <button mat-button (click)="onSelect('recipe')">Recipes</button>
+        <button mat-button (click)="onSelect('shop')">Shop</button>
+        <span class="example-spacer"></span>
+        <button mat-button>Manage</button>
+        <mat-menu #manage="matMenu">
+        <button mat-menu-item>
+            <mat-icon>file_download</mat-icon>
+            <span>Fetch Data</span>
+        </button>
+        <button mat-menu-item>
+            <mat-icon>save</mat-icon>
+            <span>Save Data</span>
+        </button>
+        </mat-menu>
+    </mat-toolbar-row>
+</mat-toolbar>

@@ -1,39 +1,32 @@
-<div class="row">
-  <div class="col-xs-12">
-    <div class="card">
-      <div class="card-header h5">
-        Edit Shopping List
-      </div>
-      <div class="card-body">
-        <form>
-          <mat-form-field>
-              <input matInput placeholder="Name"  name="name" [(ngModel)] = "ingredientName">
-              <button mat-button *ngIf="ingredientName" matSuffix mat-icon-button aria-label="Clear" (click)="ingredientName=''">
-                  <mat-icon>close</mat-icon>
-              </button>
-          </mat-form-field>
-          <br>
-          <mat-form-field>
-              <input matInput type="number" placeholder="Amount" name="amount" [(ngModel)] = "ingredientAmount">
-              <button mat-button *ngIf="ingredientAmount" matSuffix mat-icon-button aria-label="Clear" (click)="ingredientAmount=undefined">
-                  <mat-icon>close</mat-icon>
-              </button>
-          </mat-form-field>
-          <div class="button-row">
-              <button mat-raised-button
-              color="primary"
-              type="submit" 
-              (click) = "onAddIngredient()">
-                Add
-              </button>
-              <button mat-raised-button 
-                color="warn"
-                type="button" 
-                (click) = "onDeleteIngredient()">Delete</button>
-          </div>
-          
-        </form>
-      </div>
-    </div>    
-  </div>
-</div>
+<mat-card>
+  <mat-card-title>Edit Shopping List</mat-card-title>
+  <mat-card-content>
+    <form>
+        <mat-form-field>
+            <input matInput placeholder="Name"  name="name" [(ngModel)] = "ingredientName">
+            <button mat-button *ngIf="ingredientName" matSuffix mat-icon-button aria-label="Clear" (click)="ingredientName=''">
+                <mat-icon>close</mat-icon>
+            </button>
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+            <input matInput type="number" placeholder="Amount" name="amount" [(ngModel)] = "ingredientAmount">
+            <button mat-button *ngIf="ingredientAmount" matSuffix mat-icon-button aria-label="Clear" (click)="ingredientAmount=undefined">
+                <mat-icon>close</mat-icon>
+            </button>
+        </mat-form-field>
+        <div class="button-row">
+            <button mat-raised-button
+            color="primary"
+            type="submit" 
+            (click) = "onAddIngredient()">
+              Add
+            </button>
+            <button mat-raised-button 
+              color="warn"
+              type="button" 
+              (click) = "onDeleteIngredient()">Delete</button>
+        </div>
+    </form>
+  </mat-card-content>
+</mat-card>
