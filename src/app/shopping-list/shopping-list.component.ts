@@ -32,11 +32,11 @@ export class ShoppingListComponent implements OnInit {
   }
 
   onIngredientDeleted(ingredient: Ingredient) {
-    for (let i in this.ingredients) {
+    for (const i in this.ingredients) {
       if (this.ingredients[i].name === ingredient.name && this.ingredients[i].amount >= ingredient.amount) {
         this.ingredients[i].amount = this.ingredients[i].amount - ingredient.amount;
         if (this.ingredients[i].amount === 0) {
-          this.ingredients.splice(+i);
+          this.ingredients.splice( +i, 1);
         }
       }
     }
