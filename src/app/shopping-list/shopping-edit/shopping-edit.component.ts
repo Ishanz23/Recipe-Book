@@ -21,15 +21,15 @@ export class ShoppingEditComponent implements OnInit {
     (this.ingredientName === undefined || this.ingredientAmount === undefined) ?
       console.log('Ingredient Name/amount missing!') :
       this.ingredientAdded.emit(new Ingredient( this.ingredientName, this.ingredientAmount));
-      this.ingredientName = undefined;
-      this.ingredientAmount = undefined;
   }
 
   onDeleteIngredient() {
     (this.ingredientName === undefined || this.ingredientAmount === undefined) ?
       console.log('Ingredient Name/amount missing!') :
       this.ingredientDeleted.emit(new Ingredient( this.ingredientName, this.ingredientAmount));
+  }
+
+  onClearName() {
     this.ingredientName = undefined;
-    this.ingredientAmount = undefined;
   }
 }

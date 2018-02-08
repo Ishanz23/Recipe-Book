@@ -15,12 +15,24 @@ export class ShoppingListComponent implements OnInit {
   }
 
   onIngredientAdded(ingredient: Ingredient) {
-    this.ingredients.push(ingredient);
+    let ingredientAdded: boolean;
+    for (const i in this.ingredients) {
+      if (ingredient.name === this.ingredients[i].name) {
+        this.ingredients[i].amount += ingredient.amount;
+        ingredientAdded = true;
+        break;
+      } else {
+        ingredientAdded = false;
+      }
+    }
+    if (!ingredientAdded) {
+      this.ingredients.push(ingredient);
+    }
     console.log(this.ingredients);
   }
 
   onIngredientDeleted(ingredient: Ingredient) {
-    for (const i in this.ingredients) {
+    for (let i in this.ingredients) {
       if (this.ingredients[i].name === ingredient.name && this.ingredients[i].amount >= ingredient.amount) {
         this.ingredients[i].amount = this.ingredients[i].amount - ingredient.amount;
         if (this.ingredients[i].amount === 0) {

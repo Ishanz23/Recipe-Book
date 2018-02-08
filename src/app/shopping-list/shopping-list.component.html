@@ -1,19 +1,24 @@
 
-<app-shopping-edit 
-  (ingredientAdded) = "onIngredientAdded($event)" 
-  (ingredientDeleted) = "onIngredientDeleted($event)"></app-shopping-edit>
-<br>
 <div class="row">
-  <div class="col-xs-10">
-    <div class="card">
-      <div class="card-header h5">
-        Cart
-      </div>
-      <ul class="list-group">
-        <a class="list-group-item" *ngFor = "let ingredient of ingredients">
-          {{ ingredient.name }}({{ ingredient.amount }})
-        </a>
-      </ul>
-    </div>            
+  <div class="col-xs-6">
+      <app-shopping-edit 
+      (ingredientAdded) = "onIngredientAdded($event)" 
+      (ingredientDeleted) = "onIngredientDeleted($event)"></app-shopping-edit>
+  </div>
+  <mat-divider [vertical] = "true"></mat-divider>
+  <div class="col-xs-6">
+      <mat-card class="cart">
+          <mat-card-title>Cart</mat-card-title>
+          <mat-card-content>
+              <p *ngIf = "ingredients.length === 0 ; else ingredientList">Your cart is empty.</p>
+              <ng-template #ingredientList>
+                  <mat-nav-list>
+                      <mat-list-item *ngFor = "let ingredient of ingredients">
+                          <a>{{ ingredient.name }}({{ ingredient.amount }})</a>
+                      </mat-list-item>
+                  </mat-nav-list>
+              </ng-template>
+          </mat-card-content>
+        </mat-card>
   </div>
 </div>
