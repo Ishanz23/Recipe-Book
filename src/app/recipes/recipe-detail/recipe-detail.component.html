@@ -8,42 +8,15 @@
   <mat-card-content>
     <button mat-raised-button color="primary" [matMenuTriggerFor]="manageRecipe">Manage Recipe</button>
     <mat-menu #manageRecipe="matMenu">
-      <button mat-menu-item>Cart</button>
+      <button mat-menu-item (click)="onShopping()">Shop</button>
       <button mat-menu-item>Edit</button>
       <button mat-menu-item>Delete</button>
-    </mat-menu>
+    </mat-menu>    
+    <mat-list>
+      <h3 mat-subheader>Ingredients</h3>
+      <mat-list-item *ngFor = "let ingredient of recipe.ingredients">
+        {{ingredient.name}}({{ingredient.amount}})
+      </mat-list-item>
+    </mat-list>
   </mat-card-content>
 </mat-card>
-<!-- <div class="row">
-  <div class="col-xs-12">
-    <img [src]="recipe.imagePath" [alt]="recipe.name" class="img-responsive" style="max-height: 200px">    
-  </div>
-</div>
-<div class="row">
-  <div class="col-xs-12">
-    <h3>{{ recipe.name }}</h3>
-  </div>
-</div>
-<div class="row">
-  <div class="col-xs-12">
-    <div class="btn-group">
-      <button class="btn btn-primary dropdown-toggle">Manage Recipe</button>
-      <div class="dropdown-menu">
-        <a href="#" class="dropdown-item">Shopping List</a>
-        <a href="#" class="dropdown-item">Edit</a>
-        <a href="#" class="dropdown-item">Delete</a>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="row">
-  <div class="col-xs-12">
-    {{ recipe.description }}
-  </div>
-</div>
-
-<div class="row">
-  <div class="col-xs-12">
-    Ingredients
-  </div>
-</div> -->

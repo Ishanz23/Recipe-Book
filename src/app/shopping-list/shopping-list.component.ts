@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Ingredient } from '../shared/ingredient.model';
+import { ShoppingListService } from './shopping-list.service';
 
 @Component({
   selector: 'app-shopping-list',
@@ -9,37 +10,14 @@ import { Ingredient } from '../shared/ingredient.model';
 export class ShoppingListComponent implements OnInit {
   ingredients: Ingredient[] = [];
 
-  constructor() { }
+  constructor(private shoppingListService: ShoppingListService) { }
 
   ngOnInit() {
-  }
-
-  onIngredientAdded(ingredient: Ingredient) {
-    let ingredientAdded: boolean;
-    for (const i in this.ingredients) {
-      if (ingredient.name === this.ingredients[i].name) {
-        this.ingredients[i].amount += ingredient.amount;
-        ingredientAdded = true;
-        break;
-      } else {
-        ingredientAdded = false;
+    this.ingredients = this.shoppingListService.getIngredients();
+    this.shoppingListService.ingredientsChanged.subscribe(
+      (ingredients: Ingredient[]) => {
+        this.ingredients = this.shoppingListService.getIngredients();
       }
-    }
-    if (!ingredientAdded) {
-      this.ingredients.push(ingredient);
-    }
-    console.log(this.ingredients);
-  }
-
-  onIngredientDeleted(ingredient: Ingredient) {
-    for (const i in this.ingredients) {
-      if (this.ingredients[i].name === ingredient.name && this.ingredients[i].amount >= ingredient.amount) {
-        this.ingredients[i].amount = this.ingredients[i].amount - ingredient.amount;
-        if (this.ingredients[i].amount === 0) {
-          this.ingredients.splice( +i, 1);
-        }
-      }
-    }
-    console.log(this.ingredients);
+    );
   }
 }
