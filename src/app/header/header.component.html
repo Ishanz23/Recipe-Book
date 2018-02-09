@@ -1,8 +1,8 @@
 <mat-toolbar color="primary" class="mat-elevation-z6">
     <mat-toolbar-row>
-        <button mat-button ><h3>Recipe Book</h3></button>
-        <button mat-button (click)="onSelect('recipe')">Recipes</button>
-        <button mat-button (click)="onSelect('shop')">Shop</button>
+        <button mat-button [routerLink]="['']"><h3>Recipe Book</h3></button>
+        <button mat-button routerLink="recipes">Recipes</button>
+        <button mat-button [routerLink]="['shop']">Shop</button>        
         <span class="example-spacer"></span>
         <button mat-icon-button [matMenuTriggerFor]="manage"><mat-icon>more_vert</mat-icon></button>
         <mat-menu #manage="matMenu">
