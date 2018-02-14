@@ -5,9 +5,9 @@
   </mat-card-title>
   <mat-card-content>
       <mat-nav-list>          
-        <app-recipe-item *ngFor = "let recipe of recipes; last as last" 
-        [recipe]="recipe" 
-        [divider]="last">
+        <app-recipe-item  class="list-margin" *ngFor = "let recipe of recipes; let i = index" 
+        [recipe]="recipe"
+        [index]="i">
         </app-recipe-item>
       </mat-nav-list>    
   </mat-card-content>

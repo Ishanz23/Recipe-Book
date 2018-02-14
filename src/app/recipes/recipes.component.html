@@ -1,11 +1,13 @@
 <div class="row">
+  <div class="col-md-12">
+    <button mat-raised-button color="accent" class="button-spacer" [routerLink]= "['new']">New Recipe</button>
+  </div>
+</div>
+<div class="row">
   <div class="col-md-5">
     <app-recipe-list></app-recipe-list>
   </div>
   <div class="col-md-7">
-    <app-recipe-detail *ngIf = "selectedRecipe; else infoText" [recipe]="selectedRecipe"></app-recipe-detail>
-    <ng-template #infoText>
-      <p>Please Select a recipe</p>
-    </ng-template>
+    <router-outlet></router-outlet>
   </div>
 </div>

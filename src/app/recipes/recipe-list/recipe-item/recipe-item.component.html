@@ -1,8 +1,7 @@
 <mat-list-item>          
   <img matListAvatar [src]="recipe.imagePath" alt="{{ recipe.name }}" class="recipe-icon">
-  <a (click)="onSelected()">        
+  <a [routerLink]="index">        
     <h2 matLine class="mat-h2">{{ recipe.name }}</h2>
     <p matLine>{{ recipe.description }}</p>
-  </a>
-  <mat-divider [inset]="true" *ngIf="!divider"></mat-divider>          
+  </a>        
 </mat-list-item>

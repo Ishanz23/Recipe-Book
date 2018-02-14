@@ -14,12 +14,9 @@ import { ShoppingListComponent } from './shopping-list/shopping-list.component';
 import { ShoppingEditComponent } from './shopping-list/shopping-edit/shopping-edit.component';
 import { HeaderComponent } from './header/header.component';
 import { ShoppingListService } from './shopping-list/shopping-list.service';
-
-const appRoutes: Routes  = [
-  {path: '', component: RecipesComponent},
-  {path: 'recipes', component: RecipesComponent},
-  {path: 'shop', component: ShoppingListComponent}
-];
+import { AppRoutingModule } from './app-routing.module';
+import { RecipeStartComponent } from './recipes/recipe-start/recipe-start.component';
+import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
 
 @NgModule({
   declarations: [
@@ -30,13 +27,15 @@ const appRoutes: Routes  = [
     RecipeDetailComponent,
     RecipeItemComponent,
     ShoppingListComponent,
-    ShoppingEditComponent
+    ShoppingEditComponent,
+    RecipeStartComponent,
+    RecipeEditComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
-    RouterModule.forRoot(appRoutes),
+    AppRoutingModule,
     MaterialModule
   ],
   providers: [ShoppingListService],
