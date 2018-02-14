@@ -1,15 +1,24 @@
 <section class="mat-typography">
-<mat-card>
-  <mat-card-title>
-      <h1>Recipe List</h1>
-  </mat-card-title>
-  <mat-card-content>
-      <mat-nav-list>          
-        <app-recipe-item  class="list-margin" *ngFor = "let recipe of recipes; let i = index" 
-        [recipe]="recipe"
-        [index]="i">
-        </app-recipe-item>
-      </mat-nav-list>    
-  </mat-card-content>
-</mat-card>
+    <div class="row">
+      <div class="col-xs-12">
+        <button mat-raised-button color="accent" class="spacer" (click)= "onNewRecipe()">New Recipe</button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+          <mat-card>
+            <mat-card-title>
+                <h1>Recipe List</h1>
+            </mat-card-title>
+            <mat-card-content>
+                <mat-nav-list>          
+                  <app-recipe-item  class="spacer" *ngFor = "let recipe of recipes; let i = index" 
+                  [recipe]="recipe"
+                  [index]="i">
+                  </app-recipe-item>
+                </mat-nav-list>    
+            </mat-card-content>
+          </mat-card>
+      </div>
+    </div>
 </section>
