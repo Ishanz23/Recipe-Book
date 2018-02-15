@@ -1,24 +1,15 @@
-<section class="mat-typography">
-    <div class="row">
-      <div class="col-xs-12">
-        <button mat-raised-button color="accent" class="spacer" (click)= "onNewRecipe()">New Recipe</button>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-xs-12">
-          <mat-card>
-            <mat-card-title>
-                <h1>Recipe List</h1>
-            </mat-card-title>
-            <mat-card-content>
-                <mat-nav-list>          
-                  <app-recipe-item  class="spacer" *ngFor = "let recipe of recipes; let i = index" 
-                  [recipe]="recipe"
-                  [index]="i">
-                  </app-recipe-item>
-                </mat-nav-list>    
-            </mat-card-content>
-          </mat-card>
-      </div>
-    </div>
-</section>
+<mat-toolbar color="primary">
+  <span>All Recipes</span>
+  <span class="example-spacer"></span>
+  <button mat-icon-button (click)= "onNewRecipe()">
+      <mat-icon>add</mat-icon>
+  </button>
+</mat-toolbar>
+
+<mat-nav-list>
+  <h3 mat-subheader>Recipe List</h3>
+  <app-recipe-item  class="spacer" *ngFor = "let recipe of recipes; let i = index" 
+  [recipe]="recipe"
+  [index]="i">
+  </app-recipe-item>
+</mat-nav-list>    

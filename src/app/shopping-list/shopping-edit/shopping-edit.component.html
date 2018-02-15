@@ -1,6 +1,3 @@
-<mat-card>
-  <mat-card-title>Edit Shopping List</mat-card-title>
-  <mat-card-content>
     <form>
         <mat-form-field>
             <input matInput placeholder="Name"  name="name" [(ngModel)] = "ingredientName">
@@ -20,13 +17,11 @@
             color="primary"
             type="submit" 
             (click) = "onAddIngredient()">
-              Add
+            Add
             </button>
             <button mat-raised-button 
-              color="warn"
-              type="button" 
-              (click) = "onDeleteIngredient()">Delete</button>
+            color="warn"
+            type="button" 
+            (click) = "onDeleteIngredient()">Delete</button>
         </div>
     </form>
-  </mat-card-content>
-</mat-card>

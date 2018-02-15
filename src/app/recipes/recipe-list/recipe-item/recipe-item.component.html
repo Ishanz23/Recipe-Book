@@ -1,7 +1,7 @@
-<mat-list-item>          
-  <img matListAvatar [src]="recipe.imagePath" alt="{{ recipe.name }}" class="recipe-icon">
-  <a [routerLink]="index">        
-    <h2 matLine class="mat-h2">{{ recipe.name }}</h2>
-    <p matLine>{{ recipe.description }}</p>
-  </a>        
+<!-- <img matListAvatar [src]="recipe.imagePath" alt="{{ recipe.name }}" class="recipe-icon"> -->
+<mat-list-item [routerLink]="index">        
+    <a>
+      <h3 mat-line>{{ recipe.name }}</h3>
+      <p mat-line>{{ recipe.description }}</p>
+    </a>    
 </mat-list-item>

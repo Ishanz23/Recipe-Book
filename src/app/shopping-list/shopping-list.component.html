@@ -1,22 +1,19 @@
 
-<div class="row">
-  <div class="col-xs-6">
-      <app-shopping-edit></app-shopping-edit>
-  </div>
-  <mat-divider [vertical] = "true"></mat-divider>
-  <div class="col-xs-6">
-      <mat-card class="cart">
-          <mat-card-title>Cart</mat-card-title>
-          <mat-card-content>
-              <p *ngIf = "ingredients.length === 0 ; else ingredientList">Your cart is empty.</p>
-              <ng-template #ingredientList>
-                  <mat-nav-list>
-                      <mat-list-item *ngFor = "let ingredient of ingredients">
-                          <a>{{ ingredient.name }}({{ ingredient.amount }})</a>
-                      </mat-list-item>
-                  </mat-nav-list>
-              </ng-template>
-          </mat-card-content>
-        </mat-card>
-  </div>
-</div>
+<app-shopping-edit></app-shopping-edit>
+<mat-toolbar color="primary">
+    <span>Cart</span>
+    <span class="example-spacer"></span>                
+    <mat-icon class="example-icon" color="warn" class="delete-fab" (click)="onDelete()" *ngIf = "ingredients.length > 0">delete</mat-icon>
+</mat-toolbar>
+<mat-card>
+    <mat-card-content>
+        <p *ngIf = "ingredients.length === 0 ; else ingredientList">Your cart is empty.</p>
+        <ng-template #ingredientList>
+            <mat-nav-list>
+                <mat-list-item *ngFor = "let ingredient of ingredients">
+                    <a>{{ ingredient.name }}({{ ingredient.amount }})</a>
+                </mat-list-item>
+            </mat-nav-list>
+        </ng-template>
+    </mat-card-content>            
+</mat-card>
