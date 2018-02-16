@@ -1,27 +1,37 @@
-    <form>
+    <form [formGroup]="ingredientForm" (ngSubmit)="onSubmit()">
         <mat-form-field>
-            <input matInput placeholder="Name"  name="name" [(ngModel)] = "ingredientName">
-            <button mat-button *ngIf="ingredientName" matSuffix mat-icon-button aria-label="Clear" (click)="onClearName()">
+            <input matInput placeholder="Name" id="name" name="name" formControlName="name">
+            <button mat-button *ngIf="ingredientForm.get('name').dirty" matSuffix mat-icon-button aria-label="Clear" (click)="onClearName()">
                 <mat-icon>close</mat-icon>
             </button>
+            <mat-error *ngIf= "!ingredientForm.get('name').valid">
+                    <mat-error *ngIf= "ingredientForm.get('name').errors['required']">
+                        Name of Ingredient is required!
+                    </mat-error>
+                    <mat-error *ngIf= "ingredientForm.get('name').errors['ingredientNotAllowed']">                    
+                        Not a valid Ingredient!
+                    </mat-error>
+            </mat-error>
         </mat-form-field>
-        <br>
         <mat-form-field>
-            <input matInput type="number" placeholder="Amount" name="amount" [(ngModel)] = "ingredientAmount">
-            <button mat-button *ngIf="ingredientAmount" matSuffix mat-icon-button aria-label="Clear" (click)="ingredientAmount=undefined">
+            <input matInput type="number" placeholder="Amount" name="amount" formControlName="amount">
+            <button mat-button *ngIf="ingredientForm.get('amount').dirty" matSuffix mat-icon-button aria-label="Clear" (click)="onClearAmount()">
                 <mat-icon>close</mat-icon>
             </button>
+            <mat-error *ngIf= "!ingredientForm.get('amount').valid">
+                <mat-error *ngIf="ingredientForm.get('amount').errors['required']">
+                    Amount of Ingredient is required!
+                </mat-error>                
+            </mat-error>
         </mat-form-field>
         <div class="button-row">
-            <button mat-raised-button
-            color="primary"
-            type="submit" 
-            (click) = "onAddIngredient()">
-            Add
-            </button>
             <button mat-raised-button 
-            color="warn"
-            type="button" 
-            (click) = "onDeleteIngredient()">Delete</button>
+                color="primary" 
+                type="submit" 
+                [disabled]="!ingredientForm.valid"
+            >
+                {{ editMode ? 'Update' : 'Add' }}
+            </button>
+            <button mat-raised-button color="warn" type="button" (click) = "onClear()">Clear</button>      
         </div>
     </form>
