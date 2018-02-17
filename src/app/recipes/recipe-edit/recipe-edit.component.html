@@ -1,7 +1,7 @@
 <form [formGroup]="recipeForm" (ngSubmit)="onSubmit()">
     <div class="recipe-container">
         <div class="button-row">
-            <button mat-raised-button color="primary" type="submit">Save</button>
+            <button mat-raised-button color="primary" type="submit" [disabled]="!recipeForm.valid">Save</button>
             <button mat-raised-button color="warn" type="button">Cancel</button>
         </div>
         <mat-form-field>
