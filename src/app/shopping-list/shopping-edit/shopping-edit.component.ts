@@ -3,6 +3,7 @@ import { Ingredient } from '../../shared/ingredient.model';
 import { ShoppingListService } from '../shopping-list.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs/Subscription';
+import { ValidIngredient } from '../../shared/validIngredient.model';
 
 @Component({
   selector: 'app-shopping-edit',
@@ -11,21 +12,32 @@ import { Subscription } from 'rxjs/Subscription';
 })
 export class ShoppingEditComponent implements OnInit, OnDestroy {
   editIndex: number;
-  subscription: Subscription;
+  editorSubscription: Subscription;
+  validatorsubscription: Subscription;
   ingredientForm: FormGroup;
-  allowedIngredients: string[];
+  validIngredients: string[];
   editMode: boolean;
 
   constructor(private shoppingListService: ShoppingListService) { }
 
   ngOnInit() {
     this.editMode = false;
-    this.allowedIngredients = this.shoppingListService.getAllowedIngredients();
-    this.ingredientForm = new FormGroup({
-      'name': new FormControl(null, [Validators.required, this.validateIngredientName.bind(this)]),
-      'amount': new FormControl(null, [Validators.required, Validators.pattern('^[1-9]+[0-9]*$')])
-    });
-    this.subscription = this.shoppingListService.editingStarted.subscribe(
+    this.initForm();
+    this.validIngredients = [];
+    /* Getting valid ingredients from firestore */
+    this.validatorsubscription = this.shoppingListService.getValidIngredients().subscribe(
+      (items: ValidIngredient[]) => {
+        items.forEach(
+          element => {
+            this.validIngredients.push(element.name);
+          }
+        );
+        console.log(this.validIngredients);
+        this.ingredientForm.get('name').setValidators(this.validateIngredientName.bind(this));
+      }
+    );
+
+    this.editorSubscription = this.shoppingListService.editingStarted.subscribe(
       (index: number) => {
         this.editIndex = index;
         this.editMode = true;
@@ -37,8 +49,16 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
     );
   }
 
+  initForm() {
+    this.ingredientForm = new FormGroup({
+      'name': new FormControl(null, [Validators.required]),
+      'amount': new FormControl(null, [Validators.required, Validators.pattern('^[1-9]+[0-9]*$')])
+    });
+  }
+
   ngOnDestroy() {
-    this.subscription.unsubscribe();
+    this.editorSubscription.unsubscribe();
+    this.validatorsubscription.unsubscribe();
   }
 
   validateIngredientName(control: FormControl): {[key: string]: boolean} {
@@ -48,7 +68,7 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
     } else {
       ingredName = '';
     }
-    if (this.allowedIngredients.indexOf(ingredName) === -1 && ingredName !== '') {
+    if (this.validIngredients.indexOf(ingredName) === -1 && ingredName !== '') {
       return {'ingredientNotAllowed': true};
     } else {
       return null;

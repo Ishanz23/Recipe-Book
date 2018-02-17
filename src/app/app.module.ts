@@ -3,7 +3,11 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { MaterialModule } from './material.module';
+
+import { environment } from '../environments/environment';
 
 import { AppComponent } from './app.component';
 import { RecipesComponent } from './recipes/recipes.component';
@@ -37,9 +41,11 @@ import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,
-    MaterialModule
+    MaterialModule,
+    AngularFireModule.initializeApp(environment.firebase, 'recipe-book'),
+    AngularFirestoreModule
   ],
-  providers: [ShoppingListService],
+  providers: [AngularFirestoreModule, ShoppingListService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

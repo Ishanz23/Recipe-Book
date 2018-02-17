@@ -1,19 +1,21 @@
 import { Ingredient } from '../shared/ingredient.model';
 import { Subject } from 'rxjs/Subject';
+import { Injectable } from '@angular/core';
+import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
+import { Observable } from 'rxjs/Observable';
+import { ValidIngredient } from '../shared/validIngredient.model';
 
+@Injectable()
 export class ShoppingListService {
+    ingredientsCollection: AngularFirestoreCollection<ValidIngredient>;
     ingredientsChanged = new Subject<Ingredient[]>();
     editingStarted = new Subject<number>();
     private ingredients: Ingredient[] = [];
-    private allowedIngredients = [
-        'onion', 'chilli',
-        'tomato', 'potato',
-        'ginger', 'garlic',
-        'turmeric', 'cumin',
-        'coriander', 'paneer',
-        'spinach', 'mustard oil',
-        'moong daal', 'bay leaf'
-      ];
+    private validIngredients: Observable<ValidIngredient[]>;
+
+    constructor(private afs: AngularFirestore) {
+        this.validIngredients = this.afs.collection('validIngredients').valueChanges();
+    }
 
     getIngredients() {
         return this.ingredients.slice();
@@ -23,8 +25,8 @@ export class ShoppingListService {
         return this.ingredients[index];
     }
 
-    getAllowedIngredients() {
-        return this.allowedIngredients.slice();
+    getValidIngredients() {
+        return this.validIngredients;
     }
 
     addIngredient(ingredient: Ingredient) {
