@@ -35,7 +35,7 @@
                         <mat-form-field>
                             <input matInput type="number" formControlName="amount" placeholder="Amount">
                         </mat-form-field>
-                        <button mat-mini-fab color="warn" type="button"><mat-icon>delete</mat-icon></button>
+                        <button mat-mini-fab color="warn" type="button" (click)="onDeleteIngredient(i)"><mat-icon>delete</mat-icon></button>
                     </div>
                     <button mat-raised-button color="accent" type="button" (click)="onAddIngredient()" style="margin-top: 3px">Add Ingredient</button>
                 </div>
