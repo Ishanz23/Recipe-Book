@@ -1,8 +1,7 @@
-.recipe-container {
-    display: flex;
+.container-recipes-edit {
     flex-direction: column;
 }
 
-.recipe-container > * {
-    width: auto;
-  }
+.recipe-card {
+    max-width: 400px;
+}

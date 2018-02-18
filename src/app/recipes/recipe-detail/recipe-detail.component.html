@@ -1,4 +1,4 @@
-<mat-card>
+<mat-card class="recipe-detail-card">
   <mat-card-header>
     <div mat-card-avatar><mat-icon>restaurant_menu</mat-icon></div>
     <mat-card-title>{{ recipe.name }}</mat-card-title>
@@ -6,12 +6,17 @@
   </mat-card-header>
   <img mat-card-image [src]="recipe.imagePath" [alt]="recipe.name">
   <mat-card-content>
-    <button mat-raised-button color="primary" [matMenuTriggerFor]="manageRecipe">Manage Recipe</button>
-    <mat-menu #manageRecipe="matMenu">
-      <button mat-menu-item (click)="onShopping()">Shop</button>
-      <button mat-menu-item (click)="onEditRecipe()">Edit</button>
-      <button mat-menu-item>Delete</button>
-    </mat-menu>    
+    <div class="button-row">
+        <button mat-mini-fab color="accent" (click)="onShopping()">
+          <mat-icon>add_shopping_cart</mat-icon>
+        </button>
+        <button mat-mini-fab color="accent" (click)="onEditRecipe()">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-mini-fab color="accent" (click)="onDeleteRecipe()">
+          <mat-icon>delete</mat-icon>
+        </button>
+    </div>
     <mat-list>
       <h3 mat-subheader>Ingredients</h3>
       <mat-list-item *ngFor = "let ingredient of recipe.ingredients">

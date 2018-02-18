@@ -32,4 +32,9 @@ export class RecipeDetailComponent implements OnInit {
       this.recipeService.addIngredientsToCart(this.recipe.ingredients);
   }
 
+  onDeleteRecipe() {
+    this.recipeService.deleteRecipe(this.id);
+    this.router.navigate(['/recipes']);
+  }
+
 }
