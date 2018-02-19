@@ -3,9 +3,12 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { MaterialModule } from './material.module';
+import { AppRoutingModule } from './app-routing.module';
 
 import { environment } from '../environments/environment';
 
@@ -20,7 +23,6 @@ import { RecipeItemComponent } from './recipes/recipe-list/recipe-item/recipe-it
 import { ShoppingListComponent } from './shopping-list/shopping-list.component';
 import { ShoppingEditComponent } from './shopping-list/shopping-edit/shopping-edit.component';
 import { HeaderComponent } from './header/header.component';
-import { AppRoutingModule } from './app-routing.module';
 import { RecipeStartComponent } from './recipes/recipe-start/recipe-start.component';
 import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
 
@@ -40,6 +42,8 @@ import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    HttpModule,
+    HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,

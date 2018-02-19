@@ -2,34 +2,37 @@ import { Injectable } from '@angular/core';
 import { Recipe } from './recipe.model';
 import { Ingredient } from '../shared/ingredient.model';
 import { ShoppingListService } from '../shopping-list/shopping-list.service';
-import { Subject } from 'rxjs/Subject';
+import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/map';
+
 @Injectable()
 export class RecipeService {
-    recipesChanged = new Subject<Recipe[]>();
+    private recipeCollection: AngularFirestoreCollection<Recipe>;
+    private recipeDoc: AngularFirestoreDocument<Recipe>;
+    private recipes: Observable<Recipe[]>;
 
-    constructor(private shoppingListService: ShoppingListService) {}
+    constructor(private afs: AngularFirestore, private shoppingListService: ShoppingListService) {
+        this.recipeCollection = this.afs.collection('recipes');
+        this.recipes = this.recipeCollection.snapshotChanges().map(
+            actions => {
+                return actions.map(
+                    a => {
+                        const data = a.payload.doc.data() as Recipe;
+                        data.id = a.payload.doc.id;
+                        return data;
+                    }
+                );
+            }
+        );
+    }
 
-    private recipes: Recipe[] = [
-        new Recipe(
-            'Dal Fry',
-            'The tasty companion for your Chapatis!',
-            'https://upload.wikimedia.org/wikipedia/commons/3/39/Daal_after_Tadka_Pulse_Soup_India.jpg',
-            [new Ingredient('Moong Daal', 2), new Ingredient('Onion', 2), new Ingredient('Chili', 1)]
-        ),
-        new Recipe(
-            'Palak Paneer',
-            'The Magic of spinach with Paneer!',
-            'https://upload.wikimedia.org/wikipedia/commons/d/da/Yummy_Palak_Paneer.jpg',
-            [new Ingredient('Paneer', 30), new Ingredient('Spinach', 5), new Ingredient('Onion', 2)]
-        )
-    ];
-
-    getRecipe(index: number) {
-        return this.recipes[index];
+    getRecipe(id: string) {
+        return this.afs.doc(`recipes/${id}`).valueChanges();
     }
 
     getRecipes() {
-        return this.recipes.slice();
+        return this.recipes;
     }
 
     addIngredientsToCart(ingredients: Ingredient[]) {
@@ -37,17 +40,16 @@ export class RecipeService {
     }
 
     addRecipe(recipe: Recipe) {
-        this.recipes.push(recipe);
-        this.recipesChanged.next(this.recipes.slice());
+        this.recipeCollection.add(recipe);
     }
 
-    updateRecipe(index: number, recipe: Recipe) {
-        this.recipes[index] = recipe;
-        this.recipesChanged.next(this.recipes.slice());
+    updateRecipe(recipe: Recipe) {
+        this.recipeDoc = this.afs.doc(`recipes/${recipe.id}`);
+        this.recipeDoc.update(recipe);
     }
 
-    deleteRecipe(index: number) {
-        this.recipes.splice(index, 1);
-        this.recipesChanged.next(this.recipes.slice());
+    deleteRecipe(id: string) {
+        this.recipeDoc = this.afs.doc(`recipes/${id}`);
+        this.recipeDoc.delete();
     }
 }

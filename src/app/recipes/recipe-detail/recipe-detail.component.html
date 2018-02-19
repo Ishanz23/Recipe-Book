@@ -7,21 +7,27 @@
   <img mat-card-image [src]="recipe.imagePath" [alt]="recipe.name">
   <mat-card-content>
     <div class="button-row">
-        <button mat-mini-fab color="accent" (click)="onShopping()">
-          <mat-icon>add_shopping_cart</mat-icon>
-        </button>
-        <button mat-mini-fab color="accent" (click)="onEditRecipe()">
-          <mat-icon>edit</mat-icon>
-        </button>
-        <button mat-mini-fab color="accent" (click)="onDeleteRecipe()">
-          <mat-icon>delete</mat-icon>
-        </button>
+      <button mat-mini-fab class="icon-spacer" matTooltip="Add to cart" color="accent" (click)="onShopping()">
+        <mat-icon>add_shopping_cart</mat-icon>
+      </button>
+      <button mat-mini-fab class="icon-spacer" matTooltip="Edit Recipe" color="accent" (click)="onEditRecipe(recipe)">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button mat-mini-fab class="icon-spacer" matTooltip="Delete Recipe" color="accent" (click)="onDeleteRecipe()">
+        <mat-icon>delete</mat-icon>
+      </button>    
     </div>
-    <mat-list>
-      <h3 mat-subheader>Ingredients</h3>
-      <mat-list-item *ngFor = "let ingredient of recipe.ingredients">
-        {{ingredient.name}}({{ingredient.amount}})
-      </mat-list-item>
-    </mat-list>
+    <mat-accordion>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>Required Ingredients</mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-list>          
+          <mat-list-item *ngFor = "let ingredient of recipe.ingredients">
+            {{ingredient.name}}({{ingredient.amount}})
+          </mat-list-item>
+        </mat-list>
+      </mat-expansion-panel>
+    </mat-accordion>
   </mat-card-content>
 </mat-card>

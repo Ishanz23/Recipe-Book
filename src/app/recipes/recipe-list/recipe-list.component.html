@@ -1,15 +1,16 @@
-<mat-toolbar color="primary">
-  <span>All Recipes</span>
-  <span class="example-spacer"></span>
-  <button mat-mini-fab (click)= "onNewRecipe()">
-      <mat-icon>add</mat-icon>
-  </button>
-</mat-toolbar>
-
-<mat-nav-list>
-  <h3 mat-subheader>Recipe List</h3>
-  <app-recipe-item  class="spacer" *ngFor = "let recipe of recipes; let i = index" 
-  [recipe]="recipe"
-  [index]="i">
-  </app-recipe-item>
-</mat-nav-list>    
+<mat-card>
+  <mat-card-header>
+    <mat-card-title><h3>Recipes List</h3></mat-card-title>    
+    <button mat-mini-fab matTooltip= "Add new Recipe" color="primary" (click)= "onNewRecipe()"><mat-icon>add</mat-icon></button>    
+  </mat-card-header>  
+  <mat-divider></mat-divider>
+  <mat-card-content>
+    <mat-nav-list>
+      <!-- <h3 mat-subheader>Recipe List</h3> -->
+      <app-recipe-item  class="spacer" *ngFor = "let recipe of recipes" 
+      [recipe]="recipe"
+      [index]="recipe.id">
+      </app-recipe-item>
+    </mat-nav-list>    
+  </mat-card-content>    
+</mat-card>

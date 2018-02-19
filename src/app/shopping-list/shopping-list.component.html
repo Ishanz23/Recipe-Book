@@ -1,26 +1,31 @@
-
-<app-shopping-edit></app-shopping-edit>
-<mat-toolbar color="primary">
-    <span>Cart</span>
-    <span class="example-spacer"></span>
-    <button mat-icon-button color="warn" (click)="onDelete()" *ngIf = "ingredients.length > 0">
-        <mat-icon>delete</mat-icon>
-    </button>
-</mat-toolbar>
-<mat-card>
-    <mat-card-content>
-        <p *ngIf = "ingredients.length === 0 ; else ingredientList">Your cart is empty.</p>
-        <ng-template #ingredientList>
-            <mat-nav-list>
-                <mat-list-item 
-                    *ngFor = "let ingredient of ingredients; let i= index" 
-                    (click)="onSelectIngredient(i)"
-                >
-                    <a>{{ ingredient.name }}({{ ingredient.amount }})</a>
-                    <span class="example-spacer"></span>
-                    <button mat-icon-button (click)="onDeleteIngredient(i)"><mat-icon>close</mat-icon></button>
-                </mat-list-item>
-            </mat-nav-list>
-        </ng-template>
-    </mat-card-content>            
-</mat-card>
+<div class="container-shopping">
+    <div class="form-cart">
+        <app-shopping-edit></app-shopping-edit>
+    </div>
+    <div class="cart">
+        <mat-toolbar color="primary">
+            <span>Cart</span>
+            <span class="example-spacer"></span>
+            <button mat-icon-button color="warn" (click)="onDelete()" *ngIf = "ingredients.length > 0">
+                <mat-icon>delete</mat-icon>
+            </button>
+        </mat-toolbar>
+        <mat-card>
+            <mat-card-content>
+                <p *ngIf = "ingredients.length === 0 ; else ingredientList">Your cart is empty.</p>
+                <ng-template #ingredientList>
+                    <mat-nav-list>
+                        <mat-list-item 
+                            *ngFor = "let ingredient of ingredients; let i= index" 
+                            (click)="onSelectIngredient(i)"
+                        >
+                            <a>{{ ingredient.name }}({{ ingredient.amount }})</a>
+                            <span class="example-spacer"></span>
+                            <button mat-icon-button (click)="onDeleteIngredient(i)"><mat-icon>close</mat-icon></button>
+                        </mat-list-item>
+                    </mat-nav-list>
+                </ng-template>
+            </mat-card-content>            
+        </mat-card>
+    </div>
+</div>

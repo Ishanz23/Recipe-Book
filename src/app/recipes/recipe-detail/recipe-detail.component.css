@@ -1,3 +1,11 @@
 .recipe-detail-card {
     max-width: 450px;
 }
+
+.ingredient-panel {
+    max-width: 450px;
+}
+
+.icon-spacer {
+    margin: 0px 2px 10px 2px;
+}
