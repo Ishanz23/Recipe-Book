@@ -25,6 +25,9 @@ import { ShoppingEditComponent } from './shopping-list/shopping-edit/shopping-ed
 import { HeaderComponent } from './header/header.component';
 import { RecipeStartComponent } from './recipes/recipe-start/recipe-start.component';
 import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
+import { UserAuthService } from './services/user-auth.service';
+import { RegisterComponent } from './auth/register/register.component';
+import { LoginComponent } from './auth/login/login.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +40,9 @@ import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component
     ShoppingListComponent,
     ShoppingEditComponent,
     RecipeStartComponent,
-    RecipeEditComponent
+    RecipeEditComponent,
+    RegisterComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -51,7 +56,7 @@ import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component
     AngularFireModule.initializeApp(environment.firebase, 'recipe-book'),
     AngularFirestoreModule
   ],
-  providers: [AngularFirestoreModule, RecipeService, ShoppingListService],
+  providers: [AngularFirestoreModule, RecipeService, ShoppingListService, UserAuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
