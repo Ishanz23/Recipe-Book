@@ -18,8 +18,8 @@ export class RecipeEditComponent implements OnInit, OnDestroy {
   editMode = false;
 
   constructor(private route: ActivatedRoute,
-              private router: Router,
-              private recipeService: RecipeService) { }
+    private router: Router,
+    private recipeService: RecipeService) { }
 
   ngOnInit() {
     this.routeSub = this.route.params.subscribe(
@@ -33,8 +33,10 @@ export class RecipeEditComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.routeSub.unsubscribe();
-    this.recipeSub.unsubscribe();
+    if (this.editMode) {
+      this.routeSub.unsubscribe();
+      this.recipeSub.unsubscribe();
+    }
   }
 
   initForm() {
@@ -57,7 +59,7 @@ export class RecipeEditComponent implements OnInit, OnDestroy {
           recipeImagePath = recipe.imagePath;
           recipeDescription = recipe.description;
           if (recipe['ingredients']) {
-            for ( const ingredient of recipe['ingredients']) {
+            for (const ingredient of recipe['ingredients']) {
               recipeIngredients.push(
                 new FormGroup({
                   'name': new FormControl(ingredient.name, Validators.required),
@@ -77,6 +79,10 @@ export class RecipeEditComponent implements OnInit, OnDestroy {
     }
   }
 
+  getControls() {
+    return (<FormArray>this.recipeForm.get('ingredients')).controls;
+  }
+
   onSubmit() {
     console.log(this.recipeForm);
     if (this.editMode) {
@@ -88,7 +94,7 @@ export class RecipeEditComponent implements OnInit, OnDestroy {
   }
 
   onBack() {
-    this.router.navigate(['../'], {relativeTo: this.route});
+    this.router.navigate(['../'], { relativeTo: this.route });
   }
 
   onAddIngredient() {

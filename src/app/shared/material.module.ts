@@ -27,6 +27,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
         MatTooltipModule
     ],
     exports: [
+        CommonModule,
         MatExpansionModule,
         MatButtonModule,
         MatInputModule,
